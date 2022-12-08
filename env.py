@@ -34,7 +34,7 @@ def make_map(studentNum):
         lowprobs.append(tuple(point))
 
     idx = np.array(lowprobs)
-    map = np.ones(6,6)
+    map = np.ones((6,6))
     map[idx[:,0],idx[:,1]] = 0.0001  
     
     map[0,0] = 0.0   # Start point
@@ -43,7 +43,7 @@ def make_map(studentNum):
     return map
 
 class FrozenLake(Env):
-    def __init__(self):
+    def __init__(self, studentNum):
         """
         Add whatever paramether you need :!
 
@@ -53,6 +53,7 @@ class FrozenLake(Env):
 
         Dont forget to reset the environment :)
         """
+        self.studentNum = studentNum
 
     def reset(self):
         """

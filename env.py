@@ -74,15 +74,15 @@ class FrozenLake(Env):
         self.is_finished = False
         return self.state
 
-    def find_next_states(self,action:int, current_state=None):
+    def find_next_states(self, action, current_state=None):
         if current_state == None:
             current_state = self.state
         states = np.array([[current_state[X],current_state[Y]-1], [current_state[X]+1,current_state[Y]], [current_state[X],current_state[Y]+1], [current_state[X]-1 ,current_state[Y]]])
         next_states = np.minimum(np.maximum(states, [[0,0]]*4), [[(MAP_SIZE-1),(MAP_SIZE-1)]]*4)
-        next_states, counts = np.unique(next_states, axis = 0, return_counts= True)
-        states_probability = counts*((1-SLIPPING_PROBABILITY)/3)
-        states_probability[np.argmax(np.sum(np.minimum(np.maximum(states[action], [0,0]),[(MAP_SIZE-1),(MAP_SIZE-1)])==next_states, axis=1))] += (SLIPPING_PROBABILITY-((1-SLIPPING_PROBABILITY)/3)) 
+        next_states, counts = np.unique(next_states, axis=0, return_counts=True)
         breaking_possibility = self.map[(np.array(next_states)[:,0]),(np.array(next_states)[:,1])]
+        states_probability = counts*((1-SLIPPING_PROBABILITY)/3)
+        states_probability[next_states.tolist().index((np.minimum(np.maximum(states[action], [0,0]),[(MAP_SIZE-1),(MAP_SIZE-1)])).tolist())] += (SLIPPING_PROBABILITY-((1-SLIPPING_PROBABILITY)/3)) 
         is_end = [True if state == [(MAP_SIZE-1),(MAP_SIZE-1)] else False for state in next_states.tolist()]
         return next_states, states_probability, breaking_possibility, is_end
     

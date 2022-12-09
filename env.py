@@ -1,9 +1,12 @@
 import numpy as np
 from gym import Env
 
-MAP_SIZE = 6
-SLIPPING_PROBABILITY = 0.94
-BREAKING_PROBABILITY = 0.0001
+# MAP_SIZE = 6
+# SLIPPING_PROBABILITY = 0.94
+# BREAKING_PROBABILITY = 0.0001
+SLIPPING_PROBABILITY = 0.7
+BREAKING_PROBABILITY = 0.001
+MAP_SIZE = 15
 LEFT = 0
 DOWN = 1
 RIGHT = 2
@@ -42,7 +45,8 @@ def make_map(studentNum):
         lowprobs.append(tuple(point))
 
     idx = np.array(lowprobs)
-    map = np.ones((MAP_SIZE,MAP_SIZE))
+    # map = np.ones((MAP_SIZE,MAP_SIZE))
+    map = np.random.random((MAP_SIZE,MAP_SIZE))
     map[idx[:,0],idx[:,1]] = BREAKING_PROBABILITY  
     
     map[0,0] = 0.0   # Start point

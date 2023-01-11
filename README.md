@@ -9,5 +9,5 @@ We want to solve the **Frozen Lake** problem.
 For this, we use `Policy Iteration` and `Value Iteration` algorithms. 
 Using these algorithms, we find and analyze the value of states and the optimal policy to reach the destination in different conditions.
 
-![image](https://user-images.githubusercontent.com/65104833/211869144-297c6f87-30e2-4ed4-acc6-7747a9afaa01.png)
+![image](https://user-images.githubusercontent.com/65104833/211869350-7c46c83e-a7d1-4fc9-902b-8ace4882705c.png)
 
